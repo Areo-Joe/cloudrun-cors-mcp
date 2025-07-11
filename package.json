@@ -4,7 +4,8 @@
   "description": "A Streamable HTTP MCP server that runs on cloudrun. For CORS testing.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

@@ -28,6 +28,15 @@ function createMCPServer() {
 }
 
 const app = express();
+
+// CORS middleware
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Headers", "mcp-session-id");
+  res.header("Access-Control-Expose-Headers", "mcp-session-id");
+
+  next();
+});
+
 app.use(express.json());
 
 // Map to store transports by session ID

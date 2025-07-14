@@ -39,7 +39,7 @@ logWithVersion("Starting server");
 
 // CORS middleware
 app.use((req, res, next) => {
-  logWithVersion("Adding CORS middleware");
+  logWithVersion("Adding CORS middleware", req.url, req.method);
 
   // Set CORS headers
   res.header("Access-Control-Allow-Headers", "mcp-session-id");

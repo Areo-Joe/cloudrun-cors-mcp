@@ -31,8 +31,15 @@ const app = express();
 
 // CORS middleware
 app.use((req, res, next) => {
+  // Set CORS headers
   res.header("Access-Control-Allow-Headers", "mcp-session-id");
   res.header("Access-Control-Expose-Headers", "mcp-session-id");
+
+  // Handle preflight OPTIONS request
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
 
   next();
 });

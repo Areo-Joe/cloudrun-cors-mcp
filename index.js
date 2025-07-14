@@ -6,6 +6,12 @@ const {
 } = require("@modelcontextprotocol/sdk/server/streamableHttp.js");
 const { isInitializeRequest } = require("@modelcontextprotocol/sdk/types.js");
 
+const VERSION = "1.0.0";
+
+const logWithVersion = (...props) => {
+  console.log(`[${VERSION}]`, ...props);
+};
+
 function createMCPServer() {
   let count = 0;
   const server = new McpServer({
@@ -29,14 +35,19 @@ function createMCPServer() {
 
 const app = express();
 
+logWithVersion("Starting server");
+
 // CORS middleware
 app.use((req, res, next) => {
+  logWithVersion("Adding CORS middleware");
+
   // Set CORS headers
   res.header("Access-Control-Allow-Headers", "mcp-session-id");
   res.header("Access-Control-Expose-Headers", "mcp-session-id");
 
   // Handle preflight OPTIONS request
   if (req.method === "OPTIONS") {
+    logWithVersion("Handling OPTIONS request");
     res.status(200).end();
     return;
   }
